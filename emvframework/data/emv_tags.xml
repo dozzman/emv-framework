@@ -75,8 +75,8 @@
 	<tag code='9f52' name='Card Verification Results (CVR)' />
 	<tag code='5f53' name='International Bank Account Number (IBAN)' />
 	<tag code='5f54' name='Bank Identifier Code (BIC)' />
-	<tag code='5f55' name='Issuer Country Code (alpha2 format)' />
-	<tag code='5f56' name='Issuer Country Code (alpha3 format)' />
+	<tag code='5f55' name='Issuer Country Code (alpha2 format)' parser='tag_string' />
+	<tag code='5f56' name='Issuer Country Code (alpha3 format)' parser='tag_string' />
 	<tag code='57' name='Track 2 Equivalent Data' />
 	<tag code='9f58' name='Lower Consecutive Offline Limit (Card Check)' />
 	<tag code='9f59' name='Upper Consecutive Offline Limit (Card Check)' />
