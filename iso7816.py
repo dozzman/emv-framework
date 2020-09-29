@@ -95,7 +95,11 @@ class APDU_Command:
 		self.ins = ins
 		self.p1 = p1
 		self.p2 = p2
-		if data != None and lc == None:
+		dt = type(data)
+		if dt == str or dt == bytes:
+			data = list(data)
+
+		if data is not None and lc == None:
 			lc = len(data)
 		self.lc = lc
 		self.data = data
