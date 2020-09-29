@@ -22,6 +22,9 @@ setuptools.setup(
         'pyscard>=2.0.0',
         'lxml==4.5.2'
     ],
+    package_data = {
+        'emvframework': ['data/*']
+    },
     python_requires='>=3.6',
 )
 

@@ -10,6 +10,7 @@
 #    of the License, or (at your option) any later version.
 #
 
+import os
 from lxml import etree
 
 from .tlv import *
@@ -95,7 +96,8 @@ class EMV_TLV(TLV):
 	def __init__(self, data=None, content=True):
 		tags_db = {}
 
-		tree = etree.parse('data/emv_tags.xml')
+		data_tags_filename = os.path.join(os.path.dirname(__file__), 'data/emv_tags.xml')
+		tree = etree.parse(data_tags_filename)
 		for tag in tree.findall('tag'):
 			if tag.attrib.has_key('name'):
 				name = tag.attrib['name']
