@@ -123,7 +123,6 @@ class TAG:
 			else:
 				print(header)
 
-			# have not tested formatting of this part
 			if self.human_data != None:
 				print('{}   ( {} )'.format(deep_str, self.human_data))
 			deep += 1
