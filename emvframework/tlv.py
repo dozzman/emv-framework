@@ -10,6 +10,7 @@
 #    of the License, or (at your option) any later version.
 #
 
+import importlib
 from textwrap import wrap
 
 TAG_CLASS_UNIVERSAL = 0x0
@@ -87,7 +88,7 @@ class TAG:
 			self.name = tags_db[key]['name']
 			if 'parser' in tags_db[key] and tags_db[key]['parser'] != None:
 				d = tags_db[key]['parser'].split('.')
-				m = __import__ (d[0])
+				m = importlib.import_module('.{}'.format(d[0]), package=__package__)
 				func = getattr(m,d[1])
 				func(self)
 

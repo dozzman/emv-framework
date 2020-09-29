@@ -16,7 +16,7 @@ from smartcard.CardConnection import CardConnection
 from smartcard.CardConnectionObserver import ConsoleCardConnectionObserver
 from smartcard.Exceptions import CardRequestTimeoutException
 
-from tlv import *
+from .tlv import *
 
 INS_DB = (
 	{

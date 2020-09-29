@@ -12,9 +12,9 @@
 
 from lxml import etree
 
-from tlv import *
-from aid import *
-from iso7816 import ISO7816
+from .tlv import *
+from .aid import *
+from .iso7816 import ISO7816
 
 # TODO: Solve conflicts with ISO7816 in DB (EXTERNAL_AUTHENTICATE, GET_CHALLENGE)
 
