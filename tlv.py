@@ -10,6 +10,8 @@
 #    of the License, or (at your option) any later version.
 #
 
+from textwrap import wrap
+
 TAG_CLASS_UNIVERSAL = 0x0
 TAG_CLASS_APLICATION = 0x1
 TAG_CLASS_CONTEXT_SPECIFIC= 0x2
@@ -81,9 +83,9 @@ class TAG:
 					j += tag.total_size
 
 		key = '%x' % self.code
-		if tags_db != None and tags_db.has_key(key):
+		if tags_db != None and key in tags_db:
 			self.name = tags_db[key]['name']
-			if tags_db[key].has_key('parser') and tags_db[key]['parser'] != None:
+			if 'parser' in tags_db[key] and tags_db[key]['parser'] != None:
 				d = tags_db[key]['parser'].split('.')
 				m = __import__ (d[0])
 				func = getattr(m,d[1])
@@ -106,16 +108,24 @@ class TAG:
 				c.show(deep)
 		else:
 			deep_str = deep*'   '
-			print '%s%.2x [%.2x] - %s' % (deep_str, self.code, self.size, self.name)
+			header = '{}[{:02X} ({}): {:02X}]'.format(deep_str, self.code, self.name, self.size)
 			if self.type == TAG_TYPE_PRIMITIVE and self.data != None:
-				print '%s  ' % (deep_str),
+				data = ''
 				for i in self.data:
-					print '%.2x' % (i),
-				print
-				if self.human_data != None:
-					print '%s  ' % (deep_str),
-					print '( {0:s} )'.format(self.human_data)
-					
+					data += '{:02X}'.format(i)
+				data_lines = wrap(data, 64)
+				if len(data_lines) == 1:
+					print('{} {}'.format(header, data_lines[0]))
+				else:
+					print(header)
+					for line in data_lines:
+						print('{}   {}'.format(deep_str, line))
+			else:
+				print(header)
+
+			# have not tested formatting of this part
+			if self.human_data != None:
+				print('{}   ( {} )'.format(deep_str, self.human_data))
 			deep += 1
 			for tag in self.childs:
 				tag.show(deep)
