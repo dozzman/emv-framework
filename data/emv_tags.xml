@@ -106,7 +106,7 @@
 	<tag code='81' name='Amount, Authorised (Binary)' />
 	<tag code='82' name='Application Interchange Profile' />
 	<tag code='83' name='Command Template' />
-	<tag code='84' name='Dedicated File (DF) Name' />
+	<tag code='84' name='Dedicated File (DF) Name' parser='tag_string'/>
 	<tag code='86' name='Issuer Script Command' />
 	<tag code='87' name='Application Priority Indicator' />
 	<tag code='88' name='Short File Identifier (SFI)' />
